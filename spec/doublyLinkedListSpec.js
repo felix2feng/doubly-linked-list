@@ -45,7 +45,7 @@ describe('doublyLinkedList', function() {
     doubleList.addToHead(3);
     doubleList.removeTail();
     expect(doubleList.contains(5)).to.equal(false);
-  })
+  });
 
 });
 
