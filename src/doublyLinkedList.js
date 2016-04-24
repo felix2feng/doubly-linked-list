@@ -11,35 +11,34 @@ var DoublyLinkedList = function() {
       next: storage.head,
       previous: null
     };
-    // If head exists
     if (storage.head) {
-      // set oldHead previous to node
       storage.head.previous = node;
-      // set head to node, point node next to oldHead
-      storage.head = node;
     }
-    // If no head or tail, then set node to head/tail
-    storage.head = storage.head || node;
+    storage.head = node;
     storage.tail = storage.tail || node;
-
+    storage[value] = node;
   };
 
 
   // Remove from Tail method
-    // store in oldTail variable
-    // Two-way connection + storage.tail points to end
-      // oldTail prev is newTail
-      // change newTail's next value to null;
-      // point storage.tail to newTail
-      // delete oldTail from storage
-    // return oldTail value
+  storage.removeTail = function() {
+    var oldTail = storage.tail;
+    storage.tail = oldTail.previous;
+    storage.tail.next = null;
+    delete storage[oldTail.value];
+    return oldTail.value;
+  };
+
 
   // Contains method
-    // Takes a value, checks if any node has the value
-    // Loop through storage 
-      // Check if inputted value === node value
-        // Return true if so
-    // return false
+  storage.contains = function(value) {
+    for (var node in storage) {
+      if (storage[node].value === value) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   return storage;
 };

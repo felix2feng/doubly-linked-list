@@ -16,18 +16,18 @@ describe('doublyLinkedList', function() {
     expect(doubleList.contains).to.be.a('function');
   });
 
-  it('should re-point surrounding nodes to new one when removing', function() {
+  it('should remove reference to tail when removing it', function() {
     doubleList.addToHead(0);
     doubleList.addToHead(1);
-    doubleList.addToHead(2);
-    expect(doubleList[1].next.value).to.equal(2);
-    expect(doubleList[1].previous.value).to.equal(0);
+    doubleList.addToHead(2);  
+    doubleList.removeTail();
+    expect(doubleList.tail.next).to.equal(null);
   });
 
   it('should return value of the former tail when removeTail is called', function() {
     doubleList.addToHead('Michael-Daly');
     doubleList.addToHead('Felix Feng');
-    expect(doubleList.removeTail()).to.equal('Felix Feng');
+    expect(doubleList.removeTail()).to.equal('Michael-Daly');
   });
 
   it('should contain a value that was added', function() {
@@ -46,7 +46,6 @@ describe('doublyLinkedList', function() {
     doubleList.removeTail();
     expect(doubleList.contains(5)).to.equal(false);
   });
-
 });
 
 
